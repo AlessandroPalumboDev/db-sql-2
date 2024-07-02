@@ -74,7 +74,13 @@ GROUP BY
   Contare quanti corsi di laurea ci sono per ogni dipartimento &cross;
 
 ```sql
-
+SELECT
+    COUNT(`id`) AS `n_corsi`,
+    `department_id` AS `dipartimento`
+FROM
+    `degrees`
+GROUP BY
+    `dipartimento`
 ```
 
 #### JOIN:
