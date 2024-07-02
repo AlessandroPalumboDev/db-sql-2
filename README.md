@@ -20,7 +20,7 @@ per eseguire le nuove repository, vi allego query GROUP BY e JOIN da risolvere..
 6. [Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze](#query-6) &check;
 7. [Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)](#query-7) &check;
 8. [Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome](#query-8) &cross;
-9. [Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti](#query-9) &cross;
+9. [Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti](#query-9) &check;
 10. [Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica](#query-10) (54) &cross;
 
 #### BONUS:
@@ -137,10 +137,18 @@ WHERE
 ```
 
 - #### Query 9
-  Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti &cross;
+  Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti &check;
 
 ```sql
-
+SELECT
+    `degrees`.`name` AS `corso_di_laurea`,
+    `courses`.`name` AS `corso`,
+    `teachers`.`name` AS `nome_prof.`,
+    `teachers`.`surname` AS `cognome_prof.`
+FROM
+    `degrees`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `teachers` ON `courses`.`id` = `teachers`.`id`
 ```
 
 - #### Query 10
