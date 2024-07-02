@@ -12,11 +12,11 @@ per eseguire le nuove repository, vi allego query GROUP BY e JOIN da risolvere..
 1. [Contare quanti iscritti ci sono stati ogni anno](#query-1) &check;
 2. [Contare gli insegnanti che hanno l'ufficio nello stesso edificio](#query-2) &check;
 3. [Calcolare la media dei voti di ogni appello d'esame](#query-3) &check;
-4. [Contare quanti corsi di laurea ci sono per ogni dipartimento](#query-4) &cross;
+4. [Contare quanti corsi di laurea ci sono per ogni dipartimento](#query-4) &check;
 
 #### JOIN:
 
-5. [Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia](#query-5) &cross;
+5. [Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia](#query-5) &check;
 6. [Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze](#query-6) &cross;
 7. [Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)](#query-7) &cross;
 8. [Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome](#query-8) &cross;
@@ -71,7 +71,7 @@ GROUP BY
 ```
 
 - #### Query 4
-  Contare quanti corsi di laurea ci sono per ogni dipartimento &cross;
+  Contare quanti corsi di laurea ci sono per ogni dipartimento &check;
 
 ```sql
 SELECT
@@ -86,10 +86,17 @@ GROUP BY
 #### JOIN:
 
 - #### Query 5
-  Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia &cross;
+  Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia &check;
 
 ```sql
-
+SELECT
+    `students`.`id` AS `id_studente`,
+    `degrees`.`name` AS `corso`
+FROM
+    `students`
+JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`
+WHERE
+    `degrees`.`name` = 'Corso di Laurea in Economia';
 ```
 
 - #### Query 6
