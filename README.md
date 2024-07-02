@@ -17,7 +17,7 @@ per eseguire le nuove repository, vi allego query GROUP BY e JOIN da risolvere..
 #### JOIN:
 
 5. [Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia](#query-5) &check;
-6. [Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze](#query-6) &cross;
+6. [Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze](#query-6) &check;
 7. [Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)](#query-7) &cross;
 8. [Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome](#query-8) &cross;
 9. [Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti](#query-9) &cross;
@@ -67,7 +67,7 @@ SELECT
 FROM
     `exam_student`
 GROUP BY
-    `exam_id`
+    `exam_id`;
 ```
 
 - #### Query 4
@@ -80,7 +80,7 @@ SELECT
 FROM
     `degrees`
 GROUP BY
-    `dipartimento`
+    `dipartimento`;
 ```
 
 #### JOIN:
@@ -100,10 +100,18 @@ WHERE
 ```
 
 - #### Query 6
-  Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze &cross;
+  Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze &check;
 
 ```sql
-
+SELECT
+    `degrees`.`name` AS `corso`,
+    `departments`.`name` AS `dipartimento`,
+    `degrees`.`level` AS `durata`
+FROM
+    `degrees`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+WHERE
+    `departments`.`name` = "Dipartimento di Neuroscienze" AND `degrees`.`level` = "magistrale"
 ```
 
 - #### Query 7
