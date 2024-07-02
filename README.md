@@ -48,7 +48,13 @@ GROUP BY
   Contare gli insegnanti che hanno l'ufficio nello stesso edificio &cross;
 
 ```sql
-
+SELECT
+    COUNT(`id`) AS `n_insegnati`,
+    `office_address` AS `indirizzo`
+FROM
+    `teachers`
+GROUP BY
+    `indirizzo`;
 ```
 
 - #### Query 3
