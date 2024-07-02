@@ -9,9 +9,9 @@ per eseguire le nuove repository, vi allego query GROUP BY e JOIN da risolvere..
 
 #### GROUP BY:
 
-1. [Contare quanti iscritti ci sono stati ogni anno](#query-1) &cross;
-2. [Contare gli insegnanti che hanno l'ufficio nello stesso edificio](#query-2) &cross;
-3. [Calcolare la media dei voti di ogni appello d'esame](#query-3) &cross;
+1. [Contare quanti iscritti ci sono stati ogni anno](#query-1) &check;
+2. [Contare gli insegnanti che hanno l'ufficio nello stesso edificio](#query-2) &check;
+3. [Calcolare la media dei voti di ogni appello d'esame](#query-3) &check;
 4. [Contare quanti corsi di laurea ci sono per ogni dipartimento](#query-4) &cross;
 
 #### JOIN:
@@ -32,7 +32,7 @@ per eseguire le nuove repository, vi allego query GROUP BY e JOIN da risolvere..
 #### GROUP BY:
 
 - #### Query 1
-  Contare quanti iscritti ci sono stati ogni anno &cross;
+  Contare quanti iscritti ci sono stati ogni anno &check;
 
 ```sql
 SELECT
@@ -45,7 +45,7 @@ GROUP BY
 ```
 
 - #### Query 2
-  Contare gli insegnanti che hanno l'ufficio nello stesso edificio &cross;
+  Contare gli insegnanti che hanno l'ufficio nello stesso edificio &check;
 
 ```sql
 SELECT
@@ -58,10 +58,16 @@ GROUP BY
 ```
 
 - #### Query 3
-  Calcolare la media dei voti di ogni appello d'esame &cross;
+  Calcolare la media dei voti di ogni appello d'esame &check;
 
 ```sql
-
+SELECT
+    `exam_id` AS `appello_esame`,
+    AVG(`vote`) AS `media_voti`
+FROM
+    `exam_student`
+GROUP BY
+    `exam_id`
 ```
 
 - #### Query 4
