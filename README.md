@@ -31,83 +31,89 @@ per eseguire le nuove repository, vi allego query GROUP BY e JOIN da risolvere..
 
 #### GROUP BY:
 
-- ##### Query 1
+- #### Query 1
   Contare quanti iscritti ci sono stati ogni anno &cross;
 
-```bash
-
+```sql
+SELECT
+    COUNT(`id`) AS `n_iscrizioni`,
+    YEAR(`enrolment_date`) AS `anno_iscrizione`
+FROM
+    `students`
+GROUP BY
+    `anno_iscrizione`;
 ```
 
-- ##### Query 2
+- #### Query 2
   Contare gli insegnanti che hanno l'ufficio nello stesso edificio &cross;
 
-```bash
+```sql
 
 ```
 
-- ##### Query 3
+- #### Query 3
   Calcolare la media dei voti di ogni appello d'esame &cross;
 
-```bash
+```sql
 
 ```
 
-- ##### Query 4
+- #### Query 4
   Contare quanti corsi di laurea ci sono per ogni dipartimento &cross;
 
-```bash
+```sql
 
 ```
 
 #### JOIN:
 
-- ##### Query 5
+- #### Query 5
   Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia &cross;
 
-```bash
+```sql
 
 ```
 
-- ##### Query 6
+- #### Query 6
   Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze &cross;
 
-```bash
+```sql
 
 ```
 
-- ##### Query 7
+- #### Query 7
   Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44) &cross;
 
-```bash
+```sql
 
 ```
 
-- ##### Query 8
+- #### Query 8
   Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome &cross;
 
-```bash
+```sql
 
 ```
 
-- ##### Query 9
+- #### Query 9
   Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti &cross;
 
-```bash
+```sql
 
 ```
 
-- ##### Query 10
+- #### Query 10
   Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica &cross;
 
-```bash
+```sql
 
 ```
 
 #### BONUS:
 
-- ##### Query 11
+- #### Query 11
   Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18 &cross;
 
-```bash
+```sql
 
 ```
