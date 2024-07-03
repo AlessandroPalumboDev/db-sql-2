@@ -166,7 +166,7 @@ JOIN `teachers` ON `courses`.`id` = `teachers`.`id`;
   Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica &cross;
 
 ```sql
-SELECT
+SELECT DISTINCT
     `teachers`.`name` AS `nome_prof.`,
     `teachers`.`surname` AS `cognome_prof.`,
     -- `courses`.`name` AS `nome_corso`,
@@ -174,7 +174,8 @@ SELECT
     `departments`.`name` AS `nome_dipartimento`
 FROM
     `teachers`
-JOIN `courses` ON `teachers`.`id` = `courses`.`id`
+JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
 JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
 JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
 WHERE
