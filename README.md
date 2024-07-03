@@ -21,7 +21,7 @@ per eseguire le nuove repository, vi allego query GROUP BY e JOIN da risolvere..
 7. [Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)](#query-7) &check;
 8. [Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome](#query-8) &check;
 9. [Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti](#query-9) &check;
-10. [Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica](#query-10) (54) &cross;
+10. [Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica](#query-10) &cross;
 
 #### BONUS:
 
@@ -63,11 +63,11 @@ GROUP BY
 ```sql
 SELECT
     `exam_id` AS `appello_esame`,
-    AVG(`vote`) AS `media_voti`
+    ROUND(AVG(`vote`), 2) AS `media_voti`
 FROM
     `exam_student`
 GROUP BY
-    `exam_id`;
+    `appello_esame`;
 ```
 
 - #### Query 4
@@ -90,7 +90,7 @@ GROUP BY
 
 ```sql
 SELECT
-    `students`.`id` AS `id_studente`,
+    `students`.*,
     `degrees`.`name` AS `corso`
 FROM
     `students`
@@ -119,14 +119,15 @@ WHERE
 
 ```sql
 SELECT
+    `courses`.`name` AS `corso`,
     `teachers`.`name` AS `nome_prof.`,
-    `teachers`.`surname` AS `cognome_prof.`,
-    `courses`.`name` AS `nome_corso`
+    `teachers`.`surname`
 FROM
-    `teachers`
-JOIN `courses` ON `teachers`.`id` = `courses`.`id`
+    `courses`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
 WHERE
-    `teachers`.`id` = 44;
+    `course_teacher`.`teacher_id` = 44
 ```
 
 - #### Query 8
@@ -165,7 +166,19 @@ JOIN `teachers` ON `courses`.`id` = `teachers`.`id`;
   Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica &cross;
 
 ```sql
-
+SELECT
+    `teachers`.`name` AS `nome_prof.`,
+    `teachers`.`surname` AS `cognome_prof.`,
+    -- `courses`.`name` AS `nome_corso`,
+    -- `degrees`.`name` AS `nome_corso_esame`,
+    `departments`.`name` AS `nome_dipartimento`
+FROM
+    `teachers`
+JOIN `courses` ON `teachers`.`id` = `courses`.`id`
+JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+WHERE
+    `departments`.`name` = 'Dipartimento di Matematica'
 ```
 
 #### BONUS:
